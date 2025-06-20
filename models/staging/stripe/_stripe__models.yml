@@ -20,12 +20,12 @@ models:
         description: The type of payment used
         tests:
           - accepted_values:
-              values: [ 'credit', 'cash']
+              values: ["credit", "cash"]
       - name: status
         description: The payment status indicating whether the transaction was successful or not
         tests:
           - accepted_values:
-              values: [ 'success', 'fail']
+              values: ["success", "fail"]
       - name: amount_cents
         description: Monetary amounts in cents
       - name: amount
