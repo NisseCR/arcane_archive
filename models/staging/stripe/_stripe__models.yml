@@ -1,0 +1,32 @@
+models:
+  - name: stg_stripe__payments
+    description: The table contains records of Stripe payments. Each record represents a single payment transaction and includes details about the payment method, type, status, and amount.
+    columns:
+      - name: payment_id
+        description: Unique identifier for each payment.
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: Unique identifier for each associated order
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_jaffle_shop__orders')
+              field: order_id
+      - name: payment_method
+        description: Unique identifier for each associated order
+      - name: payment_type
+        description: The type of payment used
+        tests:
+          - accepted_values:
+              values: [ 'credit', 'cash']
+      - name: status
+        description: The payment status indicating whether the transaction was successful or not
+        tests:
+          - accepted_values:
+              values: [ 'success', 'fail']
+      - name: amount_cents
+        description: Monetary amounts in cents
+      - name: amount
+        description: Monetary value of the Stripe payment
