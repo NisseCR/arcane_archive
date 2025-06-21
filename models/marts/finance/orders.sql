@@ -15,11 +15,16 @@ order_payments as (
 orders_and_payments_joined as (
 
     select
+        -- ids
         orders.order_id,
         orders.customer_id,
-        orders.order_date,
+        
+        -- numerics
         coalesce(order_payments.total_amount, 0) as amount,
-        coalesce(order_payments.gift_card_amount, 0) as gift_card_amount
+        coalesce(order_payments.gift_card_amount, 0) as gift_card_amount,
+
+        -- dates
+        orders.order_date
 
     from orders
 

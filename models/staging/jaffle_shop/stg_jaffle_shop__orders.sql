@@ -1,6 +1,4 @@
-with
-
-source as (
+with source as (
 
     select * from {{ source('jaffle_shop','orders') }}
 
@@ -9,10 +7,15 @@ source as (
 orders as (
 
     select
+        -- ids
         id as order_id,
         user_id as customer_id,
-        order_date,
-        status
+
+        -- strings
+        status,
+
+        -- dates
+        order_date
 
     from source
 

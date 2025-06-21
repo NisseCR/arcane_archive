@@ -16,10 +16,7 @@ payments as (
         -- strings
         paymentmethod as payment_method,
         status,
-        amount as amount_cents,
-
-        -- numerics
-        created::timestamp_ltz as created_at,
+        
         case
             when
                 payment_method in (
@@ -29,14 +26,17 @@ payments as (
             else 'cash'
         end as payment_type,
 
-        -- booleans
-        amount / 100.0 as amount,
-
-        -- dates
         coalesce(status = 'successful', false) as is_completed_payment,
 
+        -- numerics
+        amount / 100.0 as amount,
+        amount as amount_cents,
+
+        -- dates
+        date_trunc('day', created) as created_date,
+
         -- timestamps
-        date_trunc('day', created) as created_date
+        created::timestamp_ltz as created_at
 
     from source
 
