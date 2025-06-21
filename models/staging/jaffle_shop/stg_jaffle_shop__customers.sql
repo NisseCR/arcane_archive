@@ -10,7 +10,7 @@ customers as (
         -- ids
         id as customer_id,
 
-        -- strings
+        -- properties
         first_name,
         last_name
     

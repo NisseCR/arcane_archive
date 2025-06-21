@@ -16,7 +16,7 @@ orders_grouped_by_customer as (
         -- ids
         customer_id,
 
-        -- aggregated properties
+        -- properties
         min(order_date) as first_order_date,
         max(order_date) as most_recent_order_data,
         count(order_id) as number_of_orders
@@ -33,17 +33,15 @@ customers_joined_on_orders as (
         -- ids
         customers.customer_id,
 
-        -- dates
-        orders_grouped_by_customer.first_order_date,
-        orders_grouped_by_customer.most_recent_order_data,
-
-        -- strings
+        -- properties
         customers.first_name,
         customers.last_name,
 
-        -- numerics
         coalesce(orders_grouped_by_customer.number_of_orders, 0)
-            as number_of_orders
+            as number_of_orders,
+
+        orders_grouped_by_customer.first_order_date,
+        orders_grouped_by_customer.most_recent_order_data
 
     from customers
 

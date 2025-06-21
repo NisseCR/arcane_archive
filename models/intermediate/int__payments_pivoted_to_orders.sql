@@ -14,7 +14,7 @@ pivot_and_aggregate_payments_to_order_grain as (
         -- ids
         order_id,
 
-        -- numerics
+        -- properties
         {% for payment_method in payment_methods -%}
             
             sum(

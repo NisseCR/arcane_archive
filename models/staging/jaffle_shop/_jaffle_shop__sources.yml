@@ -3,4 +3,8 @@ sources:
     database: raw
     tables:
       - name: orders
+      - name: items
       - name: customers
+      - name: products
+      - name: stores
+      - name: supplies

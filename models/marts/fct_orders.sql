@@ -19,12 +19,10 @@ orders_and_payments_joined as (
         orders.order_id,
         orders.customer_id,
 
-        -- dates
-        orders.order_date,
-
-        -- numerics
+        -- properties
         coalesce(order_payments.total_amount, 0) as amount,
-        coalesce(order_payments.gift_card_amount, 0) as gift_card_amount
+        coalesce(order_payments.gift_card_amount, 0) as gift_card_amount,
+        orders.order_date
 
     from orders
 
