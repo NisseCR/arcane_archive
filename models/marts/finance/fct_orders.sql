@@ -18,17 +18,17 @@ orders_and_payments_joined as (
         -- ids
         orders.order_id,
         orders.customer_id,
-        
-        -- numerics
-        coalesce(order_payments.total_amount, 0) as amount,
-        coalesce(order_payments.gift_card_amount, 0) as gift_card_amount,
 
         -- dates
-        orders.order_date
+        orders.order_date,
+
+        -- numerics
+        coalesce(order_payments.total_amount, 0) as amount,
+        coalesce(order_payments.gift_card_amount, 0) as gift_card_amount
 
     from orders
 
-    left join order_payments on orders.order_id = order_payments.order_id
+    left join order_payments using (order_id)
 
 )
 

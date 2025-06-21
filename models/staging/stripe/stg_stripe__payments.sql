@@ -13,6 +13,12 @@ payments as (
         id as payment_id,
         orderid as order_id,
 
+        -- dates
+        date_trunc('day', created) as created_date,
+
+        -- timestamps
+        created::timestamp_ltz as created_at,
+
         -- strings
         paymentmethod as payment_method,
         status,
@@ -30,13 +36,7 @@ payments as (
 
         -- numerics
         amount / 100.0 as amount,
-        amount as amount_cents,
-
-        -- dates
-        date_trunc('day', created) as created_date,
-
-        -- timestamps
-        created::timestamp_ltz as created_at
+        amount as amount_cents
 
     from source
 

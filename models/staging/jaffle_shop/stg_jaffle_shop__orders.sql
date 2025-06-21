@@ -11,11 +11,11 @@ orders as (
         id as order_id,
         user_id as customer_id,
 
-        -- strings
-        status,
-
         -- dates
-        order_date
+        order_date,
+
+        -- strings
+        status
 
     from source
 

@@ -11,9 +11,12 @@ with payments as (
 pivot_and_aggregate_payments_to_order_grain as (
 
     select
+        -- ids
         order_id,
 
+        -- numerics
         {% for payment_method in payment_methods -%}
+            
             sum(
                 case
                     when
@@ -26,9 +29,9 @@ pivot_and_aggregate_payments_to_order_grain as (
         {%- endfor %}
 
         sum(case when status = 'success' then amount end) as total_amount
-    
+
     from payments
-    
+
     group by 1
 
 )
